@@ -1,0 +1,19 @@
+version: '3'
+services:
+  spring-app:
+    build:
+      context: .
+      dockerfile: Spring/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - react-app
+
+  react-app:
+    image: node:14
+    command: npm start
+    working_dir: /app/React
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
